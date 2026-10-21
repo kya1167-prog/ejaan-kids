@@ -1,0 +1,23 @@
+{
+  "name": "ejaan-kids",
+  "version": "3.0.0",
+  "description": "A modern spelling and dictation app for children - English, Bahasa Melayu and Chinese.",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "check": "node tools/validate-library.cjs && node tools/validate-ui.cjs",
+    "check:library": "node tools/validate-library.cjs",
+    "check:ui": "node tools/validate-ui.cjs",
+    "serve": "node tools/serve.cjs 8123"
+  },
+  "keywords": [
+    "spelling",
+    "education",
+    "kids",
+    "malay",
+    "chinese"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}

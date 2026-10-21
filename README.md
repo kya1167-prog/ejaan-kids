@@ -1,338 +1,188 @@
-# Ejaan Kids - 儿童拼写学习应用
+# Ejaan Kids 🦞
 
-一个支持英语、马来文和中文的儿童拼写学习应用，专为儿童设计，结合图片、emoji和语音帮助儿童学习文字拼写和发音。
+A modern spelling & dictation app for children — **English**, **Bahasa Melayu** and **中文**.
 
-## 功能特性
-
-### 核心功能
-
-#### 1. 多语言支持
-- **英语** (English)
-- **马来文** (Bahasa Melayu)
-- **中文** (Chinese)
-
-#### 2. 两种学习模式
-
-**拼写模式 (Spelling Mode)**
-- 显示单词的emoji/图片
-- 播放单词发音
-- 点击字母按钮拼写单词
-- 自动检查答案
-- 显示庆祝动画
-
-**听读模式 (Listen & Learn Mode)**
-- 显示单词和emoji/图片
-- 自动播放发音
-- 可重复听发音
-- 前进/后退按钮自由切换单词
-- 纯复习模式，无需拼写
-
-#### 3. 智能图片生成
-- 自动匹配emoji图标
-- 支持Unsplash API搜索真实图片
-- 三重降级机制：图片 → emoji → 默认图标
-- 支持英语、马来文、中文关键词搜索
-
-#### 4. 智能语音系统 (TTS)
-- 本地TTS语音优先
-- 自动检测语言包可用性
-- 马来文语音自动回退到Google Translate TTS
-- 手机移动端友好
-- 实时语音状态显示
-
-### 管理功能
-
-#### 家长管理界面
-- 添加/删除单词
-- 独立语言选择（添加单词时可选择不同语言）
-- 单词列表管理
-- 语音状态检测
-- Unsplash API密钥配置
-
-#### 语音状态指示器
-- 实时显示可用的TTS语音
-- 英文、马来文、中文语音分别检测
-- 提供语音安装指导
-
-## 使用指南
-
-### 首次使用
-
-1. **打开应用**
-   - 应用默认显示Parent管理界面
-
-2. **配置语音**（可选）
-   - 查看语音状态指示器
-   - 如需要马来文语音，可安装系统语音包
-
-3. **添加单词**
-   - 选择语言：English / Melayu / 中文
-   - 输入单词（如：fish, ikan, 鱼）
-   - 点击"Add"添加
-   - 系统自动匹配emoji或图片
-
-4. **开始学习**
-   - 方法1：点击顶部语言按钮 → "🎮 Start Quiz"
-   - 方法2：在Parent界面 → "🎮 Start Quiz!"
-
-### 学习流程
-
-#### 拼写模式
-1. 应用显示emoji/图片
-2. 自动播放单词发音
-3. 点击字母按钮拼写单词
-4. 可重复点击"🔊 Listen"听发音
-5. 完成拼写后自动检查答案
-6. 正确显示庆祝动画
-7. 点击"Next →"进入下一个单词
-
-#### 听读模式
-1. 切换到"Listen & Learn Mode"
-2. 自动显示单词和emoji/图片
-3. 自动播放发音
-4. 重复点击"🔊 Listen"听发音
-5. 点击"⬅️ Previous"返回上一个单词
-6. 点击"Next ➡️"进入下一个单词
-7. 查看进度条了解学习进度
-
-### 模式切换
-- 两种模式可以随时切换
-- 切换模式时单词自动同步
-- 进度保持一致
-
-## 最近更新
-
-### v2026.02.18 - 重大更新
-
-#### 修复的问题
-
-1. **拼写模式重复字母逻辑修复**
-   - 问题：单词"susu"有两个"s"时，必须点击特定的"s"
-   - 修复：现在可以点击任何一个可用字母，逻辑更直观
-   - 改进：字母按钮点击后立即禁用，避免混淆
-
-2. **Listen模式文字显示修复**
-   - 问题：切换到Listen模式时文字不显示
-   - 修复：切换模式时自动重新加载当前单词
-   - 改进：文字、emoji、进度同步显示
-
-3. **模式切换单词同步修复**
-   - 问题：Listen模式切换到Spelling模式时显示错误的单词
-   - 修复：切换模式时调用`loadWord()`重新加载
-   - 改进：确保Spelling和Listen模式始终显示同一单词
-
-4. **语言切换逻辑修复**
-   - 问题：点击语言按钮后按钮不高亮，逻辑失效
-   - 修复：重写`setMode()`函数，正确更新按钮状态
-   - 改进：语言切换更可靠
-
-#### 新增功能
-
-1. **添加单词时的语言选择**
-   - 独立的语言选择按钮：English / Melayu / 中文
-   - 输入框placeholder根据语言自动切换
-   - 错误提示支持三语言
-   - 清晰的视觉反馈
-
-2. **导航改进**
-   - Listen模式添加"⬅️ Previous"按钮
-   - 顶部菜单添加"🎮 Start Quiz"按钮
-   - 可直接从语言选择启动Quiz
-   - 更好的用户流程
-
-3. **Quiz完成返回功能**
-   - Quiz完成后"Next →"按钮变为"🏠 Back to Home"
-   - 点击后返回Parent管理界面
-   - 重置Quiz状态
-
-4. **初始界面优化**
-   - 启动时显示Parent模式
-   - 更符合使用流程
-   - 避免混淆
-
-5. **手机马来文TTS支持**
-   - 自动检测马来文语音可用性
-   - 本地TTS不可用时自动使用Google Translate TTS
-   - 需要网络连接
-   - 双重保障机制
-
-#### 界面改进
-
-1. **语音状态指示器**
-   - 实时显示英文、马来文、中文语音可用性
-   - "🔄 Check Voices"按钮手动刷新
-   - 语音不可用时提供安装指引
-
-2. **Listen模式界面重设计**
-   - 大号字体显示单词（48px）
-   - 大号emoji/图片（80px/150px）
-   - 醒目的Listen按钮
-   - 学习指引提示
-   - 独立进度条
-
-3. **语言选择视觉反馈**
-   - 选中按钮高亮显示
-   - 渐变色背景
-   - 清晰的边框区分
-
-## 技术架构
-
-### 核心技术
-- **前端**：纯HTML/CSS/JavaScript
-- **存储**：LocalStorage（单词列表）
-- **TTS**：Web Speech API + Google Translate TTS备选
-- **图片**：Emoji映射 + Unsplash API
-
-### 文件结构
-```
-ejaan-kids/
-├── good.html              # 主应用文件
-├── word-emoji-map.json    # Emoji映射配置
-├── index.html             # 备用版本
-└── README.md              # 本文档
-```
-
-### 主要函数
-
-#### TTS语音管理
-- `loadVoices()` - 加载可用语音
-- `checkVoiceAvailability()` - 检查语音可用性
-- `getBestVoiceForLanguage()` - 获取最佳语音
-- `speakWord()` - 朗读单词
-- `speakWithGoogleTTS()` - Google Translate TTS备选
-
-#### 学习模式
-- `setupLatinSpelling()` - 设置字母拼写（英语/马来文）
-- `initChineseWriter()` - 设置汉字书写（中文）
-- `loadListenSelectGame()` - 加载听读模式
-- `toggleGameMode()` - 切换学习模式
-
-#### 单词管理
-- `addWord()` - 添加单词
-- `deleteWord()` - 删除单词
-- `renderWordList()` - 渲染单词列表
-- `setAddWordLanguage()` - 设置添加单词的语言
-
-#### Quiz功能
-- `startQuiz()` - 开始Quiz
-- `loadWord()` - 加载单词
-- `nextWord()` - 下一个单词
-- `previousWord()` - 上一个单词（Listen模式）
-- `checkAnswer()` - 检查答案
-
-### 数据结构
-
-#### 单词对象
-```javascript
-{
-    word: "fish",           // 单词文本
-    scene: {                // 场景对象
-        type: "emoji",      // 类型：emoji 或 image
-        value: "🐟"         // 值：emoji字符或图片URL
-    },
-    lang: "english"         // 语言：english, malay, chinese
-}
-```
-
-#### 当前状态
-```javascript
-currentMode = 'english'     // 当前语言模式
-currentGameMode = 'spelling' // 当前游戏模式
-currentWordIndex = 0        // 当前单词索引
-quizWords = []              // Quiz单词列表
-wordList = []               // 所有单词列表
-```
-
-## 配置选项
-
-### Unsplash API（可选）
-- 注册：https://unsplash.com/developers
-- 免费：1,000 请求/小时
-- 在Parent界面输入API密钥
-- 获取真实图片替代emoji
-
-### 系统语音（推荐）
-- **Windows**: 设置 → 时间和语言 → 语音
-- **macOS**: 系统偏好设置 → 辅助功能 → 语音
-- **Android**: 设置 → 语言和输入 → 文字转语音
-- **iOS**: 设置 → 辅助功能 → 语音内容 → 语音
-
-## 浏览器兼容性
-
-### 桌面浏览器
-- ✅ Chrome（推荐）
-- ✅ Firefox
-- ✅ Safari
-- ✅ Edge
-
-### 移动浏览器
-- ✅ iOS Safari
-- ✅ Android Chrome
-- ✅ Android Firefox
-
-### 注意事项
-- 部分移动浏览器可能不支持所有语音
-- 建议使用Chrome获得最佳体验
-- 马来文语音会自动回退到Google TTS
-
-## 使用技巧
-
-### 针对家长
-1. 先在Parent界面添加常用单词
-2. 查看语音状态，确保语音可用
-3. 从简单的单词开始
-4. 定期检查学习进度
-
-### 针对儿童
-1. 先用Listen模式熟悉单词
-2. 再切换到Spelling模式练习拼写
-3. 不确定时可重复点击Listen
-4. 使用Previous按钮复习之前的单词
-
-## 常见问题
-
-### Q: 马来文语音不工作？
-A: 
-1. 检查语音状态指示器
-2. 安装马来文语音包（参考系统语音配置）
-3. 确保有网络连接（Google TTS备选）
-
-### Q: 图片不显示？
-A: 
-1. 检查单词是否在emoji映射中
-2. 配置Unsplash API密钥
-3. 检查网络连接
-
-### Q: 如何删除单词？
-A: 
-1. 进入Parent界面
-2. 点击单词旁边的"×"按钮
-
-### Q: 如何重置进度？
-A: 
-1. 完成所有单词后会自动提示
-2. 点击"🏠 Back to Home"返回管理界面
-3. 可以重新开始Quiz
-
-## 未来计划
-
-- [ ] 添加发音评分功能
-- [ ] 支持更多语言
-- [ ] 添加学习进度追踪
-- [ ] 支持自定义emoji/图片
-- [ ] 添加成就系统
-- [ ] 云端同步功能
-
-## 贡献
-
-欢迎提交问题和改进建议！
-
-## 许可
-
-MIT License
+Every picture always matches the word, in every language. No API keys, no network, no ads.
+Install it on a phone and it works offline.
 
 ---
 
-**版本**: 2026.02.18  
-**作者**: Ejaan Kids Team  
-**最后更新**: 2026年2月18日
+## What changed in v3
+
+The v2 app was a single 1,800-line HTML file. This release rewrote it around one idea:
+**a word and its picture must never disagree.** The old build kept three separate
+emoji tables, so any word missing from its table fell back to a placeholder — a 🇲🇾 flag
+for Malay, a ⭐ for English — or to a random stock photo from a photo-search API. That is
+why pictures "did not match the word", especially in Malay.
+
+### The picture fix
+
+| | Before (v2) | Now (v3) |
+|---|---|---|
+| Picture source | 3 separate tables + 3 photo APIs | 1 shared library, 404 concepts × 3 languages |
+| Malay word not in the table | 🇲🇾 flag | correct picture, matched in any language |
+| English word not in the table | ⭐ | correct picture |
+| Colour "orange" | 🍊 (the fruit) | 🟠 **and** 🍊 — the parent picks |
+| "pink" | the literal text `.Magenta` | 🩷 |
+| Picture API keys | 1 placeholder + 2 leaked keys in the source | none — no key, no rate limit, no network |
+| Offline | broken (needed `fetch()` for the map) | fully offline, installable as a PWA |
+
+The new library (`assets/data/picture-library.js`) pairs **one concept with one picture**
+and spells that concept in all three languages, so `ikan` / `fish` / `鱼` all resolve to 🐟.
+A validation script enforces that no picture is ever reused for two different words, which
+keeps dictation unambiguous.
+
+### Bugs fixed
+
+- **Picture never updated in spelling mode** — the child saw a generic 🖼️ frame instead of
+  the word's picture.
+- **`fetch()` of a local JSON file** — blocked by CORS when the app is opened from disk
+  (`file://`), which silently emptied the picture map. The library is now plain JS.
+- **Wrong button updated while speaking** — `querySelector('.speak-btn')` always found the
+  hidden button in the other mode. The active button is now passed in explicitly.
+- **`event.target` on an implicit global** — broke outside Chrome.
+- **Two functions with the same name** — `selectImage()` was defined twice.
+- **Data file loaded twice**, racing the first render.
+- **Stale undo stack** after a wrong answer — cleared the tiles but not the undo history.
+- **`alert()` popups** everywhere, including on routine speech errors. Replaced with toasts.
+- **Chinese in Listen mode** rendered the tracing panel instead of the word and picture.
+- **Duplicate UI string keys** — the Malay "Listen & Learn" label was silently overwritten.
+- **Layout**: `.hidden` was overridden by `display: grid`; the responsive rule clobbered
+  `.picture--xs`; grid tracks sized to the image's intrinsic width so thumbnails overflowed.
+- **Progress bar** divided by zero with an empty word list.
+
+---
+
+## Features
+
+**For children**
+
+- ✍️ **Spelling mode** — big picture, shuffled letter tiles, undo, clear, and a hint that
+  fills the next letter.
+- 👂 **Listen & Learn mode** — word, picture and narration with previous/next navigation.
+- 🖌️ **Chinese stroke tracing** via HanziWriter, with a tap-the-character fallback when the
+  library is unavailable offline.
+- ⭐ Stars, 🔥 daily streaks and 🏅 badges that persist between sessions.
+- 🎉 Confetti and a celebration screen on every correct answer.
+
+**For parents**
+
+- 📝 Add, edit and delete words in any of the three languages.
+- 🎨 **Every word's picture is visible and changeable.** Tap a word to pick from 404
+  illustrations, search in any of the three languages, or let the app match it automatically.
+- 🧠 Auto-matching works across languages: type `kerbau` and it finds 🐃 even when the app
+  is set to Chinese.
+- 🔊 A voice panel that shows exactly which TTS voices your device has.
+- ⬇️ Export / ⬆️ import the word list as JSON, and reset everything.
+- ✨ One tap to add a 32-word starter set across all three languages.
+
+**Technical**
+
+- 📱 Installable PWA — add to home screen, runs offline.
+- 🌙 Light / dark / system theme.
+- 🌍 The interface language follows the content language: pick Melayu and the whole app
+  becomes Bahasa Melayu.
+- ♿ Accessible: semantic landmarks, ARIA labels, visible focus rings, 44px+ touch targets,
+  and `prefers-reduced-motion` support.
+- 📦 ~530 KB of images in total (the generated artwork was optimised down from 10 MB).
+
+---
+
+## Getting started
+
+```bash
+git clone https://github.com/kya1167-prog/ejaan-kids.git
+cd ejaan-kids
+
+# any static server works
+npx serve .
+# or
+node tools/serve.cjs 8123
+```
+
+Then open <http://127.0.0.1:8123/>.
+
+Opening `index.html` directly from disk also works — the app was rebuilt so it no longer
+needs `fetch()` for local files.
+
+### Voice packs
+
+Pronunciation uses the Web Speech API with your device's voices. If a language is missing:
+
+| Platform | Where to add it |
+|---|---|
+| Windows | Settings → Time & Language → Language → Speech |
+| macOS | System Settings → Accessibility → Spoken Content |
+| Android | Settings → System → Languages & input → Text-to-speech |
+| iOS | Settings → Accessibility → Spoken Content → Voices |
+
+The Parent screen shows a green tick for every voice it can find.
+
+---
+
+## Project layout
+
+The repository is **100% text**. Every raster asset is inlined as a data URI, so the
+whole app is a handful of plain files that can never 404, never need a build step,
+and work straight from `file://`.
+
+```
+ejaan-kids/
+├── index.html                     # markup only
+├── manifest.webmanifest           # PWA metadata (icons inlined)
+├── sw.js                          # offline cache
+├── assets/
+│   ├── styles.css                 # design tokens + all styling
+│   ├── app.js                     # application logic
+│   ├── data/
+│   │   ├── picture-library.js     # 404 concepts × 3 languages (source of truth)
+│   │   ├── illustrations.js       # curated artwork for the starter words
+│   │   └── artwork.js             # generated: every image as a data URI
+│   └── img/
+│       └── icon.svg               # app icon (wraps the inline 192px PNG)
+├── tools/
+│   ├── validate-library.cjs       # picture/word integrity checks
+│   ├── validate-ui.cjs            # UI string table checks
+│   ├── optimize-images.ps1        # downscale and compress the raw artwork
+│   ├── build-artwork.ps1          # raw artwork -> assets/data/artwork.js
+│   ├── build-manifest.cjs         # regenerate manifest.webmanifest
+│   ├── build-push-args.cjs        # build the GitHub App push payload
+│   └── serve.cjs                  # tiny dev server
+└── source-assets/                 # git-ignored: raw artwork sources
+```
+
+### Regenerating the artwork
+
+The raw artwork is **not** committed — the repository stays text-only. To rebuild
+the inline images, drop the originals into `source-assets/raw/` and run:
+
+```bash
+powershell -File tools/optimize-images.ps1   # raw -> optimised icons + JPEGs
+powershell -File tools/build-artwork.ps1      # optimised -> assets/data/artwork.js
+node tools/build-manifest.cjs                 # -> manifest.webmanifest
+```
+
+`build-artwork.ps1` re-encodes the icons as 8-bit indexed PNGs (259 KB → 18 KB) and
+scales the word illustrations to the 320 px they are displayed at, which takes the
+whole picture set from ~10 MB down to ~240 KB of inline data URIs.
+
+## Checks
+
+```bash
+npm run check        # both validators
+npm run serve        # dev server on :8123
+```
+
+`validate-library.cjs` enforces that every picture belongs to exactly one concept, that
+every entry has all three languages, that multi-sense words can still reach every sense,
+and that the historically broken words (`ikan`, `kucing`, `orange`, `pink`, `ice cream`, …)
+still resolve correctly.
+
+`validate-ui.cjs` enforces that the three locales have identical key sets and no duplicate
+keys.
+
+---
+
+## Licence
+
+MIT.
