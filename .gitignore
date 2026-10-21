@@ -1,0 +1,11 @@
+node_modules/
+npm-debug.log*
+.DS_Store
+Thumbs.db
+*.tmp
+.tmp/
+
+# Raw artwork sources. The repository is 100% text: every image is inlined as
+# a data URI in assets/data/artwork.js. These originals are only needed to
+# re-run tools/optimize-images.ps1 and tools/build-artwork.ps1.
+source-assets/
